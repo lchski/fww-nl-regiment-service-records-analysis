@@ -31,7 +31,3 @@ service_records <- read_tsv("data/source/therooms.ca/records.tsv") %>%
 st_johns_records_ids <- service_records %>%
   filter(str_detect(community, regex("st. *john", ignore_case = TRUE))) %>%
   pull(id)
-
-service_records %>%
-  mutate(from_st_johns = id %in% st_johns_records_ids) %>%
-  count_group(from_st_johns, religion_cleaned)
